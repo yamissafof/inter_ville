@@ -20,40 +20,41 @@ public class Inter_Ville {
 				{0, 0, 0, 0, 0, 0, 0, 0, 0, 0}
 		};
 		int indiceDepart, indiceArrivee, distance, distanceInverse, i;
+		Scanner sc = new Scanner(System.in);
 		
-		/* Scanner sc = new Scanner(System.in);
-		System.out.print("Ville de départ : ");
-		villeDepart = sc.nextLine();
-		System.out.print("Ville d'arrivée : ");
-		villeArrivee = sc.nextLine(); */
-		
-		villeDepart = Saisie.lire_String("Ville de départ : ");
-		villeArrivee = Saisie.lire_String("Ville d'arrivée : ");
-		
-		indiceDepart = -1;
-		indiceArrivee = -1;
-		
-		for (i = 0; i < villes.length; i++) {
-			if (villes[i].equals(villeDepart)) {
-				indiceDepart = i;
-			}
-			if (villes[i].equals(villeArrivee)) {
-				indiceArrivee = i;
-			}
-		}
-		
-		if (indiceDepart == -1 || indiceArrivee == -1) {
-			System.out.println("Ville introuvable !");
-		} 
-		else {
-			distance = distances[indiceDepart][indiceArrivee];
-			System.out.println("Distance entre " + villeDepart + " et " + villeArrivee + " : " + distance + "km");
+		do {
+			villeDepart = Saisie.lire_String("Ville de départ : ");
+			villeArrivee = Saisie.lire_String("Ville d'arrivée : ");
 			
-			if (distance == 0) {
-				distanceInverse = distances[indiceArrivee][indiceDepart];
-				System.out.println("Distance entre " + villeDepart + " et " + villeArrivee + " : " + distanceInverse + "km");
+			indiceDepart = -1;
+			indiceArrivee = -1;
+			
+			for (i = 0; i < villes.length; i++) {
+				if (villes[i].equals(villeDepart)) {
+					indiceDepart = i;
+				}
+				if (villes[i].equals(villeArrivee)) {
+					indiceArrivee = i;
+				}
 			}
-		}
+			
+			if (indiceDepart == -1 || indiceArrivee == -1) {
+				System.out.println("Ville introuvable !");
+			} 
+			else {
+				distance = distances[indiceDepart][indiceArrivee];
+				System.out.println("Distance entre " + villeDepart + " et " + villeArrivee + " : " + distance + "km");
+				
+				if (distance == 0) {
+					distanceInverse = distances[indiceArrivee][indiceDepart];
+					System.out.println("Distance entre " + villeDepart + " et " + villeArrivee + " : " + distanceInverse + "km");
+				}
+			}
+			
+			System.out.println("Voulez-vous calculer une autre distance ? (O/N)");
+		} while (sc.nextLine().equalsIgnoreCase("O"));
 		
-}
+		System.out.println("Fin du programme.");
+		sc.close();
+	}
 }
